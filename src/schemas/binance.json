@@ -1,0 +1,30 @@
+{
+    "category": "Legal Identity",
+    "issuer": "Binance",
+    "desc": "A global cryptocurrency exchange facilitating trading of a diverse array of digital currencies.",
+    "website": "https://www.binance.com/my/dashboard",
+    "breakWall": true,
+    "APIs": [
+      {
+        "host": "www.binance.com",
+        "intercept": {
+          "url": "bapi/accounts/v1/private/account/user/base-detail",
+          "method": "POST"
+        },
+        "nullifier": "data|userId",
+        "assert": [
+          {
+            "key": "data|level",
+            "value": "2",
+            "operation": ">="
+          }
+        ]
+      }
+    ],
+    "HRCondition": [
+      "You must have completed KYC Level 2"
+    ],
+    "tips": {
+      "message": "When you successfully log in, please click the 'Start' button to initiate the verification process."
+    }
+  }

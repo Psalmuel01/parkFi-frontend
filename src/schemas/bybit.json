@@ -1,0 +1,30 @@
+{
+    "category": "Legal Identity",
+    "issuer": "Bybit",
+    "desc": "A Secure and Reliable Asset Exchange, get access to the Spot and Futures market. ",
+    "website": "https://www.bybit.com/user/accounts/auth/personal",
+    "breakWall": true,
+    "APIs": [
+        {
+            "host": "api2.bybit.com",
+            "intercept": {
+                "url": "v2/private/user/profile",
+                "method": "GET"
+            },
+            "assert": [
+                {
+                    "key": "result|kyc_person_level",
+                    "value": "2",
+                    "operation": ">="
+                }
+            ],
+            "nullifier": "result|id"
+        }
+    ],
+    "HRCondition": [
+        "You must have completed KYC Level 2"
+    ],
+    "tips": {
+        "message": "When you successfully log in, please click the 'Start' button to initiate the verification process."
+    }
+}
