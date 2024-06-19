@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { useEffect } from "react";
 import "./App.css";
 import Header from "./components/Header";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Join from "./pages/Join";
 import About from "./pages/About";
 import Landing from "./pages/Landing";
+import { useActiveWalletChain } from "thirdweb/react";
+import { sepolia } from "thirdweb/chains";
+import { useSwitchActiveWalletChain } from "thirdweb/react";
 
 function NoMatch() {
   return (
@@ -36,6 +38,15 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
+  const chainId = useActiveWalletChain();
+  const switchChain = useSwitchActiveWalletChain();
+
+  useEffect(() => {
+    if (chainId !== sepolia.id) {
+      switchChain(sepolia);
+    }
+  }, [chainId, switchChain]);
+
   return (
     <div className="px-8 py-6 lg:px-20 lg:py-10">
       <Header />
