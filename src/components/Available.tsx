@@ -1,11 +1,12 @@
 import park from "../images/park.jpg";
-import {useContractContext} from "../contexts/ContractContext.tsx";
-import {formatEther} from "viem";
-import {formatDate} from "../utils.ts";
+import { useContractContext } from "../contexts/ContractContext.tsx";
+import { formatEther } from "viem";
+import { formatDate } from "../utils.ts";
+import CheckIn from "./CheckIn.tsx";
 
 
 const Available = () => {
-    const  {availableParkingSpaces} = useContractContext()  ;
+    const { availableParkingSpaces } = useContractContext();
 
     // const availableParkingSpaces: ParkSpaceMetadata[] = [
     //     {
@@ -40,6 +41,10 @@ const Available = () => {
     //     }
     // ]
 
+    const rent = () => {
+        document.getElementById("my_modal_4")?.showModal();
+    }
+
     return (
         <div>
             <h2 className='text-3xl my-16 font-bold text-center'>Parking Spaces</h2>
@@ -55,7 +60,18 @@ const Available = () => {
 
                             {/*<p>Duration: {space.durationType}</p>*/}
                             <div className="card-actions justify-end">
-                                <button className="btn btn-primary">Rent Now</button>
+                                <button className="btn btn-primary" onClick={rent}>Rent now</button>
+                                <dialog id="my_modal_4" className="modal">
+                                    <div className="bg-white modal-box w-11/12 max-w-5xl">
+                                        <CheckIn />
+                                        <div className="modal-action">
+                                            <form method="dialog">
+                                                <button className="btn">Close</button>
+                                                {/* <button className="btn">Close</button> */}
+                                            </form>
+                                        </div>
+                                    </div>
+                                </dialog>
                             </div>
                         </div>
                     </div>

@@ -2,12 +2,12 @@ import React from 'react'
 
 const CheckIn = () => {
     return (
-        <div className='mt-20'>
-            <div className='mb-20'>
+        <div className='pt-5'>
+            <div>
                 <h2 className='text-3xl font-bold text-center mb-5'>Check In</h2>
                 <p className='text-xl text-gray-600 font-medium text-center'>Rent a convenient parking space for affordable prices</p>
             </div>
-            <form className='my-10 p-10 text-lg border-[#ccc] border rounded-lg bg-[#f5f5f5] flex flex-wrap justify-around'>
+            <form className='my-5 p-10 text-lg border-[#ccc] border rounded-lg bg-[#f5f5f5] flex flex-wrap justify-around'>
                 <div className='mb-5 mx-2 w-1/3'>
                     <label className='font-semibold' htmlFor="durationType">Duration Type:</label>
                     <select id="durationType" name="durationType" className='w-full px-4 py-2'>

@@ -37,7 +37,7 @@ const Header = () => {
           <div className="flex lg:hidden">
             <NavButton />
           </div>
-          <div className="items-start text-gray-600 text-xl hidden lg:flex max-w-full justify-between gap-24 my-auto max-md:flex-wrap max-md:justify-center">
+          <div className="items-start text-gray-600 font-medium text-xl hidden lg:flex max-w-full justify-between gap-24 my-auto max-md:flex-wrap max-md:justify-center">
             <Link to="/" className={clickedButton === 'home' ? "text-primary font-semibold" : ""} onClick={() => handleClick('home')}>
               Home
             </Link>

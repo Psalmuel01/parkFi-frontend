@@ -2,8 +2,8 @@ import React from 'react'
 
 const CheckOut = () => {
     return (
-        <div className='mt-20'>
-            <div className='mb-20'>
+        <div className='pt-20'>
+            <div>
                 <h2 className='text-3xl font-bold text-center mb-5'>Check Out</h2>
                 <p className='text-xl text-gray-600 font-medium text-center'>Thank you and hope you come again</p>
             </div>
