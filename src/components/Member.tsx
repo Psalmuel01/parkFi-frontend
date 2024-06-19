@@ -1,7 +1,9 @@
+import Available from "./Available";
+
 const Member = () => {
     return (
         <div>
-            Member
+            <Available />
         </div>
     );
 };
