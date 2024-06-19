@@ -1,13 +1,23 @@
-import { useEffect } from "react";
 import "./App.css";
 import Header from "./components/Header";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Join from "./pages/Join";
 import About from "./pages/About";
 import Landing from "./pages/Landing";
-import { useActiveWalletChain } from "thirdweb/react";
-import { sepolia } from "thirdweb/chains";
-import { useSwitchActiveWalletChain } from "thirdweb/react";
+import { WagmiProvider} from "wagmi";
+import {sepolia} from "viem/chains";
+import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
+import {getDefaultConfig, RainbowKitProvider} from "@rainbow-me/rainbowkit";
+
+
+const config = getDefaultConfig({
+  appName: 'Park FI',
+  projectId: 'YOUR_PROJECT_ID',
+  chains: [sepolia],
+  ssr: false, // If your dApp uses server side rendering (SSR)
+});
+
+const queryClient = new QueryClient();
 
 function NoMatch() {
   return (
@@ -40,19 +50,17 @@ const router = createBrowserRouter([
 
 
 function App() {
-  const chainId = useActiveWalletChain();
-  const switchChain = useSwitchActiveWalletChain();
 
-  useEffect(() => {
-    if (Number(chainId) !== sepolia.id) {
-      switchChain(sepolia).then(r => r);
-    }
-  }, [chainId, switchChain]);
 
   return (
     <div className="px-8 py-6 lg:px-20 lg:py-10">
-
-      <RouterProvider router={router} />
+      <WagmiProvider config={config}>
+        <QueryClientProvider client={queryClient}>
+          <RainbowKitProvider>
+            <RouterProvider router={router} />
+          </ RainbowKitProvider>
+        </QueryClientProvider>
+      </WagmiProvider>
     </div>
   );
 }

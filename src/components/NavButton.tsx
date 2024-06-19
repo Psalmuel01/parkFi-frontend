@@ -2,22 +2,7 @@
 import { Dialog } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { useState } from 'react';
-
-import { ConnectButton } from "thirdweb/react";
-import { createWallet, inAppWallet } from "thirdweb/wallets";
-import { createThirdwebClient } from "thirdweb";
-
-const wallets = [
-  inAppWallet(),
-  createWallet("io.metamask"),
-  createWallet("com.coinbase.wallet"),
-  createWallet("me.rainbow"),
-];
-
-const client = createThirdwebClient({
-  // @ts-ignore
-  clientId: import.meta.env.VITE_CLIENT_ID,
-});
+import {ConnectButton} from "@rainbow-me/rainbowkit";
 
 
 const navigation = [
@@ -73,7 +58,7 @@ const NavButton = () => {
                 ))}
               </div>
               <div className="py-6">
-              <ConnectButton client={client} wallets={wallets} />
+              <ConnectButton />
               </div>
             </div>
           </div>

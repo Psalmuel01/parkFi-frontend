@@ -1,22 +1,19 @@
 import { Link } from 'react-router-dom';
 import NavButton from "./NavButton";
-import { ConnectButton } from "thirdweb/react";
-import { createWallet, inAppWallet } from "thirdweb/wallets";
-import { createThirdwebClient } from "thirdweb";
-
-const wallets = [
-  inAppWallet(),
-  createWallet("io.metamask"),
-  createWallet("com.coinbase.wallet"),
-  createWallet("me.rainbow"),
-];
-
-const client = createThirdwebClient({
-  // @ts-ignore
-  clientId: import.meta.env.VITE_CLIENT_ID,
-});
+import {ConnectButton} from "@rainbow-me/rainbowkit";
+import {useChainId, useSwitchChain} from "wagmi";
+import {useEffect} from "react";
+import {sepolia} from "viem/chains";
 
 const Header = () => {
+  const chainId = useChainId();
+  const {switchChain} = useSwitchChain();
+
+  useEffect(() => {
+    if (Number(chainId) !== sepolia.id) {
+      switchChain({ chainId: sepolia.id})
+    }
+  }, [chainId]);
   return (
     <header>
       <nav
@@ -47,7 +44,7 @@ const Header = () => {
             </Link>
             {/* <a className="text-xl cursor-pointer">Simulator</a> */}
           </div>
-          <div className="max-lg:hidden"><ConnectButton client={client} wallets={wallets} /></div>
+          <div className="max-lg:hidden"><ConnectButton  /></div>
         </div>
       </nav>
     </header>

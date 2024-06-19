@@ -1,13 +1,11 @@
 import Web3 from "web3";
 import TransgateConnect from "@zkpass/transgate-js-sdk";
-import { useActiveAccount, useReadContract } from "thirdweb/react";
-import MembershipNftAbi from "../generated/abi/MembershipNft.json";
-
+import {useAccount} from "wagmi";
 
 const Member = () => {
   const web3 = new Web3();
 
-  const activeAccount = useActiveAccount();
+  const activeAccount = useAccount();
 
   // const { contract: membershipNft } = useContrac ("", MembershipNftAbi);
   // const {data: memberShipBalance } = useReadContract({

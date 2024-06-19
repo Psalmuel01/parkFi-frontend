@@ -1,5 +1,5 @@
 {
-  "name": "we-park",
+  "name": "Parl-Fi",
   "private": true,
   "version": "0.0.0",
   "scripts": {
@@ -11,15 +11,18 @@
   "dependencies": {
     "@headlessui/react": "^2.0.4",
     "@heroicons/react": "^2.1.4",
+    "@rainbow-me/rainbowkit": "^2.1.2",
+    "@tanstack/react-query": "^5.45.1",
     "@zkpass/transgate-js-sdk": "^0.2.0",
     "axios": "^1.7.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^5.2.1",
     "react-router-dom": "^6.23.1",
-    "thirdweb": "^5.29.6",
     "ts-node": "^10.9.2",
-    "typescript": "^5.4.5"
+    "typescript": "^5.4.5",
+    "viem": "2.x",
+    "wagmi": "^2.10.2"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",
