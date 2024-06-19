@@ -1,11 +1,24 @@
 import Web3 from "web3";
 import TransgateConnect from "@zkpass/transgate-js-sdk";
-import { useActiveAccount } from "thirdweb/react";
+import { useActiveAccount, useReadContract } from "thirdweb/react";
+import MembershipNftAbi from "../generated/abi/MembershipNft.json";
+
 
 const Member = () => {
   const web3 = new Web3();
 
   const activeAccount = useActiveAccount();
+
+  // const { contract: membershipNft } = useContrac ("", MembershipNftAbi);
+  // const {data: memberShipBalance } = useReadContract({
+  //   contract: membershipNft,
+  //   method: "balanceOf",
+  //   params: [activeAccount?.address]
+  // })
+
+
+  // console.log({memberShipBalance});
+
 
   // fetched automatically from thirdweb
 
@@ -130,7 +143,7 @@ const Member = () => {
             Verify KYC using zkPass to become a ParkFi Member
           </h2>
           {
-            !!activeAccount?.address ? <div className="flex items-center justify-around">
+            activeAccount?.address ? <div className="flex items-center justify-around">
               <div
                   className="border p-4 cursor-pointer hover:bg-white"
                   onClick={() => verify("okx")}

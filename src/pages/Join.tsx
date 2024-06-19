@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import  { SetStateAction, useState} from 'react';
 import Member from '../components/Member';
 import Owner from '../components/Owner';
 
 const Join = () => {
     const [clickedButton, setClickedButton] = useState('member');
 
-    const handleClick = (button) => {
+    const handleClick = (button: SetStateAction<string>) => {
         setClickedButton(button);
     };
 

@@ -44,8 +44,8 @@ function App() {
   const switchChain = useSwitchActiveWalletChain();
 
   useEffect(() => {
-    if (chainId !== sepolia.id) {
-      switchChain(sepolia);
+    if (Number(chainId) !== sepolia.id) {
+      switchChain(sepolia).then(r => r);
     }
   }, [chainId, switchChain]);
 

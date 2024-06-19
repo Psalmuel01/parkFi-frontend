@@ -12,6 +12,7 @@ const wallets = [
 ];
 
 const client = createThirdwebClient({
+  // @ts-ignore
   clientId: import.meta.env.VITE_CLIENT_ID,
 });
 
