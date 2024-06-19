@@ -160,7 +160,7 @@ const Member = () => {
               >
                 Binance KYC
               </div>
-            </div> : <div className="flex justify-center items-center h-50 text-2xl font-bold">
+            </div> : <div className="flex justify-center items-center h-60 text-2xl font-bold">
               Connect Wallet to Start
             </div>
           }
