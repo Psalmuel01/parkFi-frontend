@@ -1,0 +1,229 @@
+[
+  {
+    "type": "constructor",
+    "inputs": [
+      {
+        "name": "_MemNft",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "_ParkNft",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "_token",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "checkIn",
+    "inputs": [],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "checkOut",
+    "inputs": [],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "getAvailableParkingSpaces",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "tuple[]",
+        "internalType": "struct ParkFi.ParkSapceMetadata[]",
+        "components": [
+          {
+            "name": "id",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "hourlyPrice",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "dailyPrice",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "isBeingUsed",
+            "type": "bool",
+            "internalType": "bool"
+          },
+          {
+            "name": "currentUser",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "paidTill",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "durationType",
+            "type": "uint8",
+            "internalType": "enum ParkFi.DurationType"
+          }
+        ]
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "owner",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "renounceOwnership",
+    "inputs": [],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "transferOwnership",
+    "inputs": [
+      {
+        "name": "newOwner",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "verifyAndMintMembership",
+    "inputs": [],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "verifyAndMintParkingSpace",
+    "inputs": [
+      {
+        "name": "_hPrice",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "_dPrice",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "event",
+    "name": "NewMemberAdded",
+    "inputs": [
+      {
+        "name": "_newMember",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "OwnershipTransferred",
+    "inputs": [
+      {
+        "name": "previousOwner",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "newOwner",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "ParkSpaceMinted",
+    "inputs": [
+      {
+        "name": "_tokenid",
+        "type": "uint256",
+        "indexed": true,
+        "internalType": "uint256"
+      },
+      {
+        "name": "_hPrice",
+        "type": "uint256",
+        "indexed": true,
+        "internalType": "uint256"
+      },
+      {
+        "name": "_dPrice",
+        "type": "uint256",
+        "indexed": true,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "error",
+    "name": "NotMember",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "OwnableInvalidOwner",
+    "inputs": [
+      {
+        "name": "owner",
+        "type": "address",
+        "internalType": "address"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "OwnableUnauthorizedAccount",
+    "inputs": [
+      {
+        "name": "account",
+        "type": "address",
+        "internalType": "address"
+      }
+    ]
+  }
+]
