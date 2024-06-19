@@ -129,32 +129,37 @@ const Member = () => {
           <h2 className="font-semibold text-2xl mb-8">
             Verify KYC using zkPass to become a ParkFi Member
           </h2>
-          <div className="flex items-center justify-around">
-            <div
-              className="border p-4 cursor-pointer hover:bg-white"
-              onClick={() => verify("okx")}
-            >
-              OKX KYC
+          {
+            !!activeAccount?.address ? <div className="flex items-center justify-around">
+              <div
+                  className="border p-4 cursor-pointer hover:bg-white"
+                  onClick={() => verify("okx")}
+              >
+                OKX KYC
+              </div>
+              <div
+                  className="border p-4 cursor-pointer hover:bg-white"
+                  onClick={() => verify("bybit")}
+              >
+                Bybit KYC
+              </div>
+              <div
+                  className="border p-4 cursor-pointer hover:bg-white"
+                  onClick={() => verify("binance")}
+              >
+                Binance KYC
+              </div>
+            </div> : <div className="flex justify-center items-center h-60 text-2xl font-bold">
+              Connect Wallet to Start
             </div>
-            <div
-              className="border p-4 cursor-pointer hover:bg-white"
-              onClick={() => verify("bybit")}
-            >
-              Bybit KYC
-            </div>
-            <div
-              className="border p-4 cursor-pointer hover:bg-white"
-              onClick={() => verify("binance")}
-            >
-              Binance KYC
-            </div>
-          </div>
+          }
+
         </div>
         <div className="w-full text-center mt-5 flex flex-col">
           <button
-            type="submit"
-            disabled
-            className="my-5 bg-blue-500 text-white px-5 py-3 rounded w-fit mx-auto"
+              type="submit"
+              disabled
+              className="my-5 bg-blue-500 text-white px-5 py-3 rounded w-fit mx-auto"
           >
             Mint membership NFT
           </button>
