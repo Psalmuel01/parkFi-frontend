@@ -1,6 +1,20 @@
 // import { Link } from 'react-router-dom';
-import NavButton from './NavButton';
-import { SiHiveBlockchain } from 'react-icons/si';
+import NavButton from "./NavButton";
+// import { SiHiveBlockchain } from 'react-icons/si';
+import { ConnectButton } from "thirdweb/react";
+import { createWallet, inAppWallet } from "thirdweb/wallets";
+import { createThirdwebClient } from "thirdweb";
+
+const wallets = [
+  inAppWallet(),
+  createWallet("io.metamask"),
+  createWallet("com.coinbase.wallet"),
+  createWallet("me.rainbow"),
+];
+
+const client = createThirdwebClient({
+  clientId: import.meta.env.VITE_CLIENT_ID,
+});
 
 const Header = () => {
   return (
@@ -20,19 +34,20 @@ const Header = () => {
             <NavButton />
           </div>
           <div className="items-start font-semibold hidden lg:flex max-w-full justify-between gap-20 my-auto max-md:flex-wrap max-md:justify-center">
-            <a href="/" className="text-xl cursor-pointer">Home</a>
-            <a href='about' className="text-xl cursor-pointer">About</a>
+            <a href="/" className="text-xl cursor-pointer">
+              Home
+            </a>
+            <a href="about" className="text-xl cursor-pointer">
+              About
+            </a>
             {/* <a className="text-xl cursor-pointer">Transactions</a> */}
             {/* <a className="text-xl cursor-pointer">DAO Members</a> */}
-            <a href='join' className="text-xl cursor-pointer">Join Network</a>
+            <a href="join" className="text-xl cursor-pointer">
+              Join Network
+            </a>
             {/* <a className="text-xl cursor-pointer">Simulator</a> */}
           </div>
-          <a
-            href="/app"
-            className="text-white bg-primary text-xl hidden lg:flex font-bold whitespace-nowrap justify-center items-center bg-cs-light-purple px-6 py-3 rounded-3xl max-md:px-5"
-          >
-            Connect Wallet
-          </a>
+          <ConnectButton client={client} wallets={wallets} />
         </div>
       </nav>
     </header>

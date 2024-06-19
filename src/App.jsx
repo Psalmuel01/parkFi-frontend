@@ -1,11 +1,11 @@
-import { useState } from 'react'
-import './App.css'
-import Header from './components/Header'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import Join from './pages/Join';
-import About from './pages/About';
-import Landing from './pages/Landing';
+import { useState } from "react";
+import "./App.css";
+import Header from "./components/Header";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Join from "./pages/Join";
+import About from "./pages/About";
+import Landing from "./pages/Landing";
 
 function NoMatch() {
   return (
@@ -18,33 +18,30 @@ function NoMatch() {
 
 const router = createBrowserRouter([
   {
-    path: '*',
+    path: "*",
     element: <NoMatch />,
   },
   {
-    path: '/',
+    path: "/",
     element: <Landing />,
   },
   {
-    path: '/join',
+    path: "/join",
     element: <Join />,
   },
   {
-    path: '/about',
+    path: "/about",
     element: <About />,
   },
 ]);
 
-
 function App() {
-
-  
   return (
-    <div className='px-8 py-6 lg:px-20 lg:py-10'>
+    <div className="px-8 py-6 lg:px-20 lg:py-10">
       <Header />
       <RouterProvider router={router} />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
