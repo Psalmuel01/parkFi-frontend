@@ -23,7 +23,7 @@ const Header = () => {
         <div className="justify-between items-center self-center flex w-full gap-5 max-md:max-w-full max-md:flex-wrap">
           <a
             href="/"
-            className="text-3xl major-flex font-semibold gap-2 bg-clip-text max-md:text-2xl max-sm:text-xl"
+            className="text-3xl major-flex font-bold gap-2 bg-clip-text max-md:text-2xl max-sm:text-xl"
           >
             ParkFi
           </a>
@@ -37,12 +37,12 @@ const Header = () => {
             <Link to="/about" className="text-xl cursor-pointer">
               About
             </Link>
-            {/* <Link className="text-xl cursor-pointer">Transactions</Link> */}
-            {/* <Link className="text-xl cursor-pointer">DAO Members</Link> */}
+            <Link to="/spaces" className="text-xl cursor-pointer">
+              Available Spaces
+            </Link>
             <Link to="/join" className="text-xl cursor-pointer">
               Join Network
             </Link>
-            {/* <a className="text-xl cursor-pointer">Simulator</a> */}
           </div>
           <div className="max-lg:hidden"><ConnectButton  /></div>
         </div>

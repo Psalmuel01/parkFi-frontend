@@ -1,4 +1,4 @@
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Dialog } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { useState } from 'react';
@@ -8,10 +8,8 @@ import {ConnectButton} from "@rainbow-me/rainbowkit";
 const navigation = [
   { name: 'Home', to: '/' },
   { name: 'About', to: '/about' },
-//   { name: 'Transactions', to: '#' },
-//   { name: 'DAO Members', to: '#' },
-  { name: 'Join Network', to: '/join' },
-//   { name: 'Simulator', to: '#' },
+  { name: 'Available Spaces', to: '/space' },
+  { name: 'Join Network', to: '/join' }
 ];
 
 const NavButton = () => {
@@ -48,13 +46,13 @@ const NavButton = () => {
             <div className="-my-6 divide-y divide-gray-500/10">
               <div className="space-y-2 py-6">
                 {navigation.map((item) => (
-                  <a
+                  <Link
                     key={item.name}
-                    href={item.to}
+                    to={item.to}
                     className="-mx-3 block rounded-lg px-3 py-2 text-base leading-7 hover:bg-gray-50"
                   >
                     {item.name}
-                  </a>
+                  </Link>
                 ))}
               </div>
               <div className="py-6">
