@@ -1,8 +1,23 @@
 // import { Link } from 'react-router-dom';
 import { Dialog } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-
 import { useState } from 'react';
+
+import { ConnectButton } from "thirdweb/react";
+import { createWallet, inAppWallet } from "thirdweb/wallets";
+import { createThirdwebClient } from "thirdweb";
+
+const wallets = [
+  inAppWallet(),
+  createWallet("io.metamask"),
+  createWallet("com.coinbase.wallet"),
+  createWallet("me.rainbow"),
+];
+
+const client = createThirdwebClient({
+  clientId: import.meta.env.VITE_CLIENT_ID,
+});
+
 
 const navigation = [
   { name: 'Home', to: '/' },
@@ -57,12 +72,7 @@ const NavButton = () => {
                 ))}
               </div>
               <div className="py-6">
-                <a
-                  href="/"
-                  className="shadow-cs-4sm py-3 px-2 text-white rounded-lg bg-primary flex items-center gap-2"
-                >
-                  Dashboard
-                </a>
+              <ConnectButton client={client} wallets={wallets} />
               </div>
             </div>
           </div>

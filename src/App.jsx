@@ -21,21 +21,23 @@ function NoMatch() {
 const router = createBrowserRouter([
   {
     path: "*",
-    element: <NoMatch />,
+    element: <><Header /><NoMatch /></>,
   },
   {
     path: "/",
-    element: <Landing />,
+    element: <><Header /><Landing /></>,
   },
   {
     path: "/join",
-    element: <Join />,
+    element: <><Header /><Join /></>,
   },
   {
     path: "/about",
-    element: <About />,
+    element: <><Header /><About /></>,
   },
 ]);
+
+
 
 function App() {
   const chainId = useActiveWalletChain();
@@ -49,7 +51,7 @@ function App() {
 
   return (
     <div className="px-8 py-6 lg:px-20 lg:py-10">
-      <Header />
+
       <RouterProvider router={router} />
     </div>
   );

@@ -1,6 +1,5 @@
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import NavButton from "./NavButton";
-// import { SiHiveBlockchain } from 'react-icons/si';
 import { ConnectButton } from "thirdweb/react";
 import { createWallet, inAppWallet } from "thirdweb/wallets";
 import { createThirdwebClient } from "thirdweb";
@@ -34,20 +33,20 @@ const Header = () => {
             <NavButton />
           </div>
           <div className="items-start font-semibold hidden lg:flex max-w-full justify-between gap-20 my-auto max-md:flex-wrap max-md:justify-center">
-            <a href="/" className="text-xl cursor-pointer">
+            <Link to="/" className="text-xl cursor-pointer">
               Home
-            </a>
-            <a href="about" className="text-xl cursor-pointer">
+            </Link>
+            <Link to="/about" className="text-xl cursor-pointer">
               About
-            </a>
-            {/* <a className="text-xl cursor-pointer">Transactions</a> */}
-            {/* <a className="text-xl cursor-pointer">DAO Members</a> */}
-            <a href="join" className="text-xl cursor-pointer">
+            </Link>
+            {/* <Link className="text-xl cursor-pointer">Transactions</Link> */}
+            {/* <Link className="text-xl cursor-pointer">DAO Members</Link> */}
+            <Link to="/join" className="text-xl cursor-pointer">
               Join Network
-            </a>
+            </Link>
             {/* <a className="text-xl cursor-pointer">Simulator</a> */}
           </div>
-          <ConnectButton client={client} wallets={wallets} />
+          <div className="max-lg:hidden"><ConnectButton client={client} wallets={wallets} /></div>
         </div>
       </nav>
     </header>
