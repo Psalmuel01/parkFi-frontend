@@ -19,7 +19,7 @@ const Join = () => {
 
         return (
         <div>
-            <h1 className='my-16 text-center text-5xl font-bold'>Join ParkFi Network</h1>
+            <h1 className='my-16 text-center text-4xl font-bold'>Join ParkFi Network</h1>
             <div className='mt-10 text-center text-2xl flex justify-center gap-60 font-medium'>
                 <button 
                     className={clickedButton === 'member' ? 'bg-primary px-4 py-2 rounded-lg text-white' : ''} 

@@ -53,7 +53,7 @@ function App() {
 
 
   return (
-    <div className="px-8 py-6 lg:px-20 lg:py-10">
+    <div className="bg-white px-8 py-6 lg:px-20 lg:py-10">
       <WagmiProvider config={config}>
         <QueryClientProvider client={queryClient}>
           <RainbowKitProvider>

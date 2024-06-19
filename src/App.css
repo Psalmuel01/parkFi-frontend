@@ -12,10 +12,10 @@ input[type="checkbox"] {
     margin-bottom: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    background-color: white;
 }
 
 input[type="submit"] {
-    background-color: #4CAF50;
     color: white;
     padding: 10px 20px;
     border: none;
@@ -23,15 +23,12 @@ input[type="submit"] {
     cursor: pointer;
 }
 
-input[type="submit"]:hover {
-    background-color: #45a049;
-}
-
 select {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    border: 1px solid #ccc; 
+    border: 1px solid #ccc;
+    border-radius: 5px;
     outline: none;
     background-color: white;
     background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="5"><polygon points="0,0 10,0 5,5" fill="gray"/></svg>');
