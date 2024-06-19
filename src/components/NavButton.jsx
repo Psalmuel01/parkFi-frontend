@@ -6,10 +6,10 @@ import { useState } from 'react';
 
 const navigation = [
   { name: 'Home', to: '/' },
-  { name: 'About', to: '#' },
+  { name: 'About', to: '/about' },
 //   { name: 'Transactions', to: '#' },
 //   { name: 'DAO Members', to: '#' },
-  { name: 'Join Network', to: '#' },
+  { name: 'Join Network', to: '/join' },
 //   { name: 'Simulator', to: '#' },
 ];
 
