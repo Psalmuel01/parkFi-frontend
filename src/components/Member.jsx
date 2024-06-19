@@ -5,7 +5,7 @@ import { useActiveAccount } from "thirdweb/react";
 const Member = () => {
   const web3 = new Web3();
 
-  const { activeAccount: address } = useActiveAccount();
+  const activeAccount = useActiveAccount();
 
   // fetched automatically from thirdweb
 
@@ -41,7 +41,7 @@ const Member = () => {
       if (isAvailable) {
         // Launch the process of verification
         // add a second parameter address to verify onchain
-        const res = await connector.launch(schemaId, address);
+        const res = await connector.launch(schemaId, activeAccount?.address);
 
         console.log("res", res);
 
