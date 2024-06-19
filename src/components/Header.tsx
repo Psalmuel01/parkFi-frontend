@@ -37,9 +37,6 @@ const Header = () => {
             <Link to="/about" className="text-xl cursor-pointer">
               About
             </Link>
-            <Link to="/spaces" className="text-xl cursor-pointer">
-              Available Spaces
-            </Link>
             <Link to="/join" className="text-xl cursor-pointer">
               Join Network
             </Link>

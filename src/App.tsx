@@ -8,6 +8,7 @@ import { WagmiProvider} from "wagmi";
 import {sepolia} from "viem/chains";
 import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
 import {getDefaultConfig, RainbowKitProvider} from "@rainbow-me/rainbowkit";
+import '@rainbow-me/rainbowkit/styles.css';
 
 
 const config = getDefaultConfig({

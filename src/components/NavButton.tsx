@@ -8,7 +8,6 @@ import {ConnectButton} from "@rainbow-me/rainbowkit";
 const navigation = [
   { name: 'Home', to: '/' },
   { name: 'About', to: '/about' },
-  { name: 'Available Spaces', to: '/space' },
   { name: 'Join Network', to: '/join' }
 ];
 
