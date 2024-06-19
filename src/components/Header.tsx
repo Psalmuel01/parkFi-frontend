@@ -9,6 +9,7 @@ const Header = () => {
   const chainId = useChainId();
   const {switchChain} = useSwitchChain();
 
+
   useEffect(() => {
     if (Number(chainId) !== sepolia.id) {
       switchChain({ chainId: sepolia.id})

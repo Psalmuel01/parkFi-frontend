@@ -8,8 +8,7 @@ import { WagmiProvider} from "wagmi";
 import {sepolia} from "viem/chains";
 import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
 import {getDefaultConfig, RainbowKitProvider} from "@rainbow-me/rainbowkit";
-import '@rainbow-me/rainbowkit/styles.css';
-
+import {ContractProvider} from "./contexts/ContractContext.tsx";
 
 const config = getDefaultConfig({
   appName: 'Park FI',
@@ -58,7 +57,9 @@ function App() {
       <WagmiProvider config={config}>
         <QueryClientProvider client={queryClient}>
           <RainbowKitProvider>
-            <RouterProvider router={router} />
+            <ContractProvider>
+              <RouterProvider router={router} />
+            </ContractProvider>
           </ RainbowKitProvider>
         </QueryClientProvider>
       </WagmiProvider>

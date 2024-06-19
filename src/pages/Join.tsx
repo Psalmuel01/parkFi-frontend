@@ -1,15 +1,23 @@
-import  { SetStateAction, useState} from 'react';
+import {SetStateAction, useMemo, useState} from 'react';
 import Member from '../components/Member';
+import JoinMember from '../components/JoinMember';
 import Owner from '../components/Owner';
+import {useContractContext} from "../contexts/ContractContext.tsx";
 
 const Join = () => {
     const [clickedButton, setClickedButton] = useState('member');
+
+    const {memberShipBalance} = useContractContext();
+
+    const isMember = useMemo(() => memberShipBalance > 0n, [memberShipBalance])
 
     const handleClick = (button: SetStateAction<string>) => {
         setClickedButton(button);
     };
 
-    return (
+    if (isMember) return <Member />
+
+        return (
         <div>
             <h1 className='my-16 text-center text-5xl font-bold'>Join ParkFi Network</h1>
             <div className='mt-10 text-center text-2xl flex justify-center gap-60 font-medium'>
@@ -27,7 +35,7 @@ const Join = () => {
                 </button>
             </div>
             <div className='my-8'>
-                {clickedButton === 'member' ? <Member /> : <Owner />}
+                {clickedButton === 'member' ? <JoinMember /> : <Owner />}
             </div>
         </div>
     );
