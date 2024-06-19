@@ -8,7 +8,6 @@ import {useContractContext} from "../contexts/ContractContext.tsx";
 const Member = () => {
   const web3 = new Web3();
   const {memberShipBalance, activeAccount} = useContractContext();
-
   const { writeContractAsync} = useWriteContract();
 
   const mintMembership = async () => {

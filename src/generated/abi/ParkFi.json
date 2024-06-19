@@ -16,6 +16,16 @@
         "name": "_token",
         "type": "address",
         "internalType": "address"
+      },
+      {
+        "name": "_protocolFee",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "_overstayFee",
+        "type": "uint256",
+        "internalType": "uint256"
       }
     ],
     "stateMutability": "nonpayable"
@@ -23,14 +33,36 @@
   {
     "type": "function",
     "name": "checkIn",
-    "inputs": [],
+    "inputs": [
+      {
+        "name": "_id",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "_durationType",
+        "type": "uint8",
+        "internalType": "enum ParkFi.DurationType"
+      },
+      {
+        "name": "duration",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
     "outputs": [],
     "stateMutability": "nonpayable"
   },
   {
     "type": "function",
     "name": "checkOut",
-    "inputs": [],
+    "inputs": [
+      {
+        "name": "_id",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
     "outputs": [],
     "stateMutability": "nonpayable"
   },
@@ -42,7 +74,7 @@
       {
         "name": "",
         "type": "tuple[]",
-        "internalType": "struct ParkFi.ParkSapceMetadata[]",
+        "internalType": "struct ParkFi.ParkSpaceMetadata[]",
         "components": [
           {
             "name": "id",
@@ -60,6 +92,11 @@
             "internalType": "uint256"
           },
           {
+            "name": "validTill",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
             "name": "isBeingUsed",
             "type": "bool",
             "internalType": "bool"
@@ -70,9 +107,9 @@
             "internalType": "address"
           },
           {
-            "name": "paidTill",
-            "type": "uint256",
-            "internalType": "uint256"
+            "name": "spaceOwner",
+            "type": "address",
+            "internalType": "address"
           },
           {
             "name": "durationType",
@@ -144,6 +181,38 @@
   },
   {
     "type": "event",
+    "name": "CheckIn",
+    "inputs": [
+      {
+        "name": "id_",
+        "type": "uint256",
+        "indexed": true,
+        "internalType": "uint256"
+      },
+      {
+        "name": "member_",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "CheckedOut",
+    "inputs": [
+      {
+        "name": "id_",
+        "type": "uint256",
+        "indexed": true,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
     "name": "NewMemberAdded",
     "inputs": [
       {
@@ -201,6 +270,11 @@
   },
   {
     "type": "error",
+    "name": "NotAvailable",
+    "inputs": []
+  },
+  {
+    "type": "error",
     "name": "NotMember",
     "inputs": []
   },
@@ -225,5 +299,10 @@
         "internalType": "address"
       }
     ]
+  },
+  {
+    "type": "error",
+    "name": "UnAuthorized",
+    "inputs": []
   }
 ]

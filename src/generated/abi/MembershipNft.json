@@ -12,6 +12,19 @@
   },
   {
     "type": "function",
+    "name": "MintMembership",
+    "inputs": [
+      {
+        "name": "_to",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
     "name": "ParkFiAddress",
     "inputs": [],
     "outputs": [
@@ -115,19 +128,6 @@
       }
     ],
     "stateMutability": "view"
-  },
-  {
-    "type": "function",
-    "name": "mintMembership",
-    "inputs": [
-      {
-        "name": "_to",
-        "type": "address",
-        "internalType": "address"
-      }
-    ],
-    "outputs": [],
-    "stateMutability": "nonpayable"
   },
   {
     "type": "function",
