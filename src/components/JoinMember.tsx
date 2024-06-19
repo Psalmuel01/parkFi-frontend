@@ -121,7 +121,8 @@ const Member = () => {
 
         // sign transaction onchain
 
-        // here we sign the transaction using the signer of the recipient from thirdweb
+        // here we sign the transaction using the signer of the recipient from wagmi
+        
       } else {
         console.log("Please install TransGate");
       }
