@@ -6,6 +6,9 @@ const Member = () => {
 
     const web3 = new Web3()
 
+    const address = "0x0489DB67c9B49C1C813da3C538103926f31BE572"
+    // fetched automatically from thirdweb
+
     const ids = ["e82fa24e66af4da2a5b0f666c356d274", "71bf5b59dd0440a48f1a4bb312ca40ad", "31238e909e174c5f9c1f90ee8f0d1673"]
   
     const verify = async (exchange) => {
@@ -26,12 +29,11 @@ const Member = () => {
     
         if (isAvailable) {    
           // Launch the process of verification
-          // This method can be invoked in a loop when dealing with multiple schemas
-          const res = await connector.launch(schemaId)
+          // add a second parameter address to verify onchain
+          const res = await connector.launch(schemaId, address)
     
           console.log('res', res)
     
-          // verify the res onchain/offchain based on the requirement
   
           // verify allocator signature
           
@@ -78,6 +80,10 @@ const Member = () => {
   
           console.log(signedValidatorAddress === validatorAddress)
           // return signedValidatorAddress === validatorAddress
+
+          // sign transaction onchain
+
+          // here we sign the transaction using the signer of the recipient from thirdweb
   
         } else {
           console.log('Please install TransGate')
