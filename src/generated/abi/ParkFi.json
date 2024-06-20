@@ -123,6 +123,61 @@
   },
   {
     "type": "function",
+    "name": "getMyParkingSpaces",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "tuple[]",
+        "internalType": "struct ParkFi.ParkSpaceMetadata[]",
+        "components": [
+          {
+            "name": "id",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "hourlyPrice",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "dailyPrice",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "validTill",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "isBeingUsed",
+            "type": "bool",
+            "internalType": "bool"
+          },
+          {
+            "name": "currentUser",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "spaceOwner",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "durationType",
+            "type": "uint8",
+            "internalType": "enum ParkFi.DurationType"
+          }
+        ]
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
     "name": "owner",
     "inputs": [],
     "outputs": [
