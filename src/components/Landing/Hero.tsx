@@ -1,10 +1,5 @@
 import * as React from "react";
 
-interface ButtonProps {
-  children: React.ReactNode;
-  variant: "primary" | "secondary";
-}
-
 const Hero: React.FC = () => {
   return (
     <section className="justify-center py-7 w-full max-w-[1337px] max-md:max-w-full">
