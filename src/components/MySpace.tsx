@@ -16,6 +16,8 @@ const MySpace = () => {
     document.getElementById("my_modal_4")?.showModal();
   }
 
+    console.log({myParkingSpaces})
+
   return (
     <div>
       <h2 className='text-3xl my-16 font-bold text-center'>My Spaces</h2>

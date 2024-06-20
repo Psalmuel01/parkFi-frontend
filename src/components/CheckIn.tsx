@@ -13,6 +13,8 @@ const CheckIn: FC<{space: ParkSpaceMetadata, clearCurrentSpace: () => void}> = (
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         toast.loading("Waiting...", {duration: 5000})
+
+        console.log({allowance});
         if (!allowance || allowance == 0n) await writeToParkToken("approve", [contractAddrs.ParkFi, maxUint256]);
         await writeToParkFi("checkIn", [space.psId, durationType, BigInt(duration)]);
 

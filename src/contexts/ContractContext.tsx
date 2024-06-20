@@ -52,8 +52,6 @@ const ContractProvider: FC<{ children: ReactNode }> = ({ children }) => {
         functionName: "getMyParkingSpaces",
     })
 
-    console.log(myParkingSpaces);
-
     const { writeContractAsync } = useWriteContract();
 
     const writeToParkFi = async (functionName: string, args?: any[]) => {
