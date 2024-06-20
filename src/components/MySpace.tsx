@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useContractContext } from '../contexts/ContractContext';
 import { formatEther } from 'viem';
+// @ts-ignore
 import park from "../images/park.jpg";
 import { ParkSpaceMetadata } from '../types';
 import CheckOut from './CheckOut';

@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
-import logo from "../../images/logo.png";
+// @ts-ignore
+import Logo from "../../images/logo.png";
 
 type NavLinkProps = {
     links: string[];
@@ -12,6 +13,7 @@ type IconTextProps = {
     text: string;
 };
 
+// @ts-ignore
 const IconText: React.FC<IconTextProps> = ({ src, alt, text }) => (
     <div className="flex gap-3 self-stretch text-2xl whitespace-nowrap">
         <img loading="lazy" src={src} alt={alt} className="shrink-0 w-10 aspect-square" />
@@ -42,7 +44,7 @@ const Footer: React.FC = () => {
                                     to="/"
                                     className="text-3xl flex items-center font-bold gap-2 bg-clip-text max-md:text-2xl max-sm:text-xl"
                                 >
-                                    <img src={logo} alt="" />ParkFi
+                                    <img src={Logo} alt="" />ParkFi
                                 </Link>
                                 <div className="shrink-0 self-stretch my-auto w-px bg-gray-900 border border-gray-900 border-solid h-[21px]" />
                                 <div className="self-stretch my-auto text-xl leading-8">Decentralized Parking</div>

@@ -2,8 +2,9 @@ import { Link } from 'react-router-dom';
 import NavButton from "./NavButton";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { useChainId, useSwitchChain } from "wagmi";
-import { useEffect, useState } from "react";
+import {SetStateAction, useEffect, useState} from "react";
 import { sepolia } from "viem/chains";
+// @ts-ignore
 import logo from "../images/logo.png";
 import {useContractContext} from "../contexts/ContractContext.tsx";
 

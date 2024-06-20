@@ -22,8 +22,7 @@ const Member = () => {
     "31238e909e174c5f9c1f90ee8f0d1673",
   ];
 
-  const verify = async (exchange) => {
-    event.preventDefault();
+  const verify = async (exchange: string) => {
     const schemaId =
       exchange === "binance"
         ? ids[0]
@@ -51,9 +50,7 @@ const Member = () => {
       if (isAvailable) {
         // Launch the process of verification
         // add a second parameter address to verify onchain
-        const res = await connector.launch(schemaId, activeAccount?.address);
-
-        console.log("res", res);
+        const res: any = await connector.launch(schemaId!, activeAccount?.address);
 
         // verify allocator signature
 
@@ -70,7 +67,7 @@ const Member = () => {
         const taskIdHex = Web3.utils.stringToHex(taskId);
         console.log("taskIdHex", taskIdHex);
 
-        const schemaIdHex = Web3.utils.stringToHex(schemaId);
+        const schemaIdHex = Web3.utils.stringToHex(schemaId!);
         console.log("schemaIdHex", schemaIdHex);
 
         const allocatorEncodeParams = web3.eth.abi.encodeParameters(
@@ -82,7 +79,7 @@ const Member = () => {
         // recover allocator address
 
         const signedAllocatorAddress = web3.eth.accounts.recover(
-          allocatorParamsHash,
+          allocatorParamsHash!,
           allocatorSignature
         );
 
@@ -107,7 +104,7 @@ const Member = () => {
 
         // recover validator address
         const signedValidatorAddress = web3.eth.accounts.recover(
-          validatorParamsHash,
+          validatorParamsHash!,
           validatorSignature
         );
 

@@ -13,7 +13,9 @@ const ContractContext = createContext({
     activeAccount: (null as any),
     availableParkingSpaces: [] as ParkSpaceMetadata[],
     myParkingSpaces: [] as ParkSpaceMetadata[],
+    // @ts-ignore
     writeToParkFi: async (functionName: string, args?: any[]) => {},
+    // @ts-ignore
     writeToParkToken: async (functionName: string, args?: any[]) => {},
     mintParkToken: () => {}
 })

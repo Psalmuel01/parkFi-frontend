@@ -5,6 +5,7 @@ import { useContractContext } from '../contexts/ContractContext';
 
 
 const CheckOut: FC<{space: ParkSpaceMetadata, clearCurrentSpace: () => void}> = ({space, clearCurrentSpace}) => {
+    console.log(clearCurrentSpace);
     const {writeToParkFi} = useContractContext();
 
     const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) => {

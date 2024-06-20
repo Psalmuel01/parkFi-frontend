@@ -1,4 +1,3 @@
-import CheckOut from "../components/CheckOut"
 
 const About = () => {
   return (

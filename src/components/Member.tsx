@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import {SetStateAction, useState} from 'react'
 import Available from './Available';
 import MySpace from './MySpace';
 
