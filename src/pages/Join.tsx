@@ -1,4 +1,4 @@
-import {SetStateAction, useMemo, useState} from 'react';
+import {SetStateAction, useState} from 'react';
 import Member from '../components/Member';
 import JoinMember from '../components/JoinMember';
 import Owner from '../components/Owner';
@@ -9,13 +9,13 @@ const Join = () => {
 
     const {memberShipBalance} = useContractContext();
 
-    const isMember = useMemo(() => memberShipBalance > 0n, [memberShipBalance])
-
     const handleClick = (button: SetStateAction<string>) => {
         setClickedButton(button);
     };
 
-    if (isMember) return <Member />
+    console.log(memberShipBalance);
+
+    if (memberShipBalance > 0n) return <Member />
 
         return (
         <div>

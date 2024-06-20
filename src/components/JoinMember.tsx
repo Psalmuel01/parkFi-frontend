@@ -1,21 +1,14 @@
 import Web3 from "web3";
 import TransgateConnect from "@zkpass/transgate-js-sdk";
-import { useWriteContract} from "wagmi";
-import  ParkFiAbi from "../generated/abi/ParkFi.json";
-import contractAddrs from "../generated/contracts";
 import {useContractContext} from "../contexts/ContractContext.tsx";
 
 const Member = () => {
   const web3 = new Web3();
-  const {memberShipBalance, activeAccount} = useContractContext();
-  const { writeContractAsync} = useWriteContract();
+  const {memberShipBalance, activeAccount, writeToParkFi} = useContractContext();
+
 
   const mintMembership = async () => {
-    await writeContractAsync({
-      abi: ParkFiAbi,
-      address: contractAddrs.ParkFi,
-      functionName: "verifyAndMintMembership",
-    })
+    await writeToParkFi("verifyAndMintMembership")
   }
 
   // fetched automatically from thirdweb
