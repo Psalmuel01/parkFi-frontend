@@ -20,9 +20,9 @@ const Member = () => {
   }
 
   const ids = [
-    "5108cbedcb3b457cb3fd3e898fa22816",
-    "8a2942d108a14d75a2e4f9a62a615252",
-    "b936394c1bc2400b928df5b3422fb3fd",
+    "9617db4336a04bfb9e2e74f9d05a59f1",
+    "fdc4a02243a24741908e564d924eb248",
+    "42a7c85ec5c349178928c142124c2fe6",
   ];
 
   const verify = async (exchange: string) => {
@@ -41,7 +41,7 @@ const Member = () => {
         duration: 5000,
       })
       // The appid of the project created in dev center
-      const appid = "1ce74716-51e2-4313-b14d-e3e0995a8d3b";
+      const appid = "0fe97aed-8038-44a9-98ef-44783bf262f2";
 
       // Create the connector instance
       const connector = new TransgateConnect(appid);
