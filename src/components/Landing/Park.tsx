@@ -11,7 +11,7 @@ const Image: React.FC<ImageProps> = ({ src, alt }) => (
   </div>
 );
 
-function Parking() {
+function Park() {
   const images = [
     { src: "https://cdn.builder.io/api/v1/image/assets/TEMP/ce317a468aef6e6d1d68f1666f808aa2266cacdf4c22e05c6e08ce1dc20c9d67?apiKey=6d09e386ed084a5db605f780c970c7a9&", alt: "Parking space 1" },
     { src: "https://cdn.builder.io/api/v1/image/assets/TEMP/cf3cb040e249af6071d1444cae72efc8d88b7a3b80e0437cb14001a197bddee3?apiKey=6d09e386ed084a5db605f780c970c7a9&", alt: "Parking space 2" },
@@ -21,9 +21,9 @@ function Parking() {
   return (
     <section className="flex justify-center items-center py-16 bg-white border-0 border-black border-solid max-md:px-5">
       <div className="flex flex-col items-center w-full max-w-[1244px] max-md:max-w-full">
-        <p className="text-sm font-semibold text-neutral-500">ONLY THE BEST SPACES</p>
-        <h1 className="mt-2 text-4xl font-bold text-gray-900">Our Parking Spaces</h1>
-        <p className="mt-6 text-lg font-medium leading-9 text-center text-zinc-950 w-[584px] max-md:max-w-full">
+        <p className="text-lg font-semibold text-neutral-500">ONLY THE BEST SPACES</p>
+        <h1 className="mt-2 text-5xl font-bold text-gray-900">Our Parking Spaces</h1>
+        <p className="mt-6 text-xl font-medium leading-9 text-center text-zinc-950 w-[584px] max-md:max-w-full">
           We provide our customers with the best and affordable parking spaces available.
         </p>
         <div className="justify-center self-stretch mt-9 max-md:max-w-full">
@@ -38,4 +38,4 @@ function Parking() {
   );
 }
 
-export default Parking;
+export default Park;

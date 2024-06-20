@@ -1,17 +1,18 @@
 import Web3 from "web3";
 import TransgateConnect from "@zkpass/transgate-js-sdk";
 import {useContractContext} from "../contexts/ContractContext.tsx";
+import { useState } from "react";
 
 const Member = () => {
   const web3 = new Web3();
+  const [valid, setValid] = useState(false);
+  const { signMessage } = useSignMessage()
   const {memberShipBalance, activeAccount, writeToParkFi} = useContractContext();
 
 
   const mintMembership = async () => {
     await writeToParkFi("verifyAndMintMembership")
   }
-
-  // fetched automatically from thirdweb
 
   const ids = [
     "e82fa24e66af4da2a5b0f666c356d274",
@@ -67,26 +68,22 @@ const Member = () => {
         const schemaIdHex = Web3.utils.stringToHex(schemaId);
         console.log("schemaIdHex", schemaIdHex);
 
-        const encodeParams = web3.eth.abi.encodeParameters(
+        const allocatorEncodeParams = web3.eth.abi.encodeParameters(
           ["bytes32", "bytes32", "address"],
           [taskIdHex, schemaIdHex, validatorAddress]
         );
-        const paramsHash = Web3.utils.soliditySha3(encodeParams);
+        const allocatorParamsHash = Web3.utils.soliditySha3(allocatorEncodeParams);
 
         // recover allocator address
 
         const signedAllocatorAddress = web3.eth.accounts.recover(
-          paramsHash,
+          allocatorParamsHash,
           allocatorSignature
         );
 
         //check if the signed allocator address is registered
-
-        console.log(
-          signedAllocatorAddress ===
-            "0x19a567b3b212a5b35bA0E3B600FbEd5c2eE9083d"
-        );
-        // return signedAllocatorAddress === "0x19a567b3b212a5b35bA0E3B600FbEd5c2eE9083d"
+        const allocatorProof = signedAllocatorAddress === "0x19a567b3b212a5b35bA0E3B600FbEd5c2eE9083d"
+        console.log(allocatorProof);
 
         // verify validator signature
 
@@ -99,22 +96,29 @@ const Member = () => {
           values.push(recipient);
         }
 
-        const encodeParams2 = web3.eth.abi.encodeParameters(types, values);
+        const validatorEncodeParams = web3.eth.abi.encodeParameters(types, values);
 
-        const paramsHash2 = Web3.utils.soliditySha3(encodeParams2);
+        const validatorParamsHash = Web3.utils.soliditySha3(validatorEncodeParams);
 
         // recover validator address
         const signedValidatorAddress = web3.eth.accounts.recover(
-          paramsHash2,
+          validatorParamsHash,
           validatorSignature
         );
 
-        console.log(signedValidatorAddress === validatorAddress);
-        // return signedValidatorAddress === validatorAddress
+        const validatorProof = signedValidatorAddress === validatorAddress
+        console.log(validatorProof);
 
         // sign transaction onchain
 
-        // here we sign the transaction using the signer of the recipient from wagmi
+        if (allocatorProof && validatorProof) {
+          setValid(true);
+          signMessage({
+            message: `Validating: ${validatorParamsHash}`,
+          });
+        }
+
+        console.log(memberShipBalance);
         
       } else {
         console.log("Please install TransGate");
@@ -163,7 +167,7 @@ const Member = () => {
         <div className="w-full text-center mt-5 flex flex-col">
           <button
               type="submit"
-              disabled={memberShipBalance > 0n}
+              disabled={memberShipBalance > 0n || !valid}
               className="my-5 bg-blue-500 text-white px-5 py-3 rounded w-fit mx-auto"
               onClick={mintMembership}
           >

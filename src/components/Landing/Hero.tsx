@@ -7,11 +7,10 @@ interface ButtonProps {
 
 const Button: React.FC<ButtonProps> = ({ children, variant }) => (
   <button
-    className={`justify-center px-5 py-3 rounded-3xl ${
-      variant === "primary"
+    className={`justify-center px-5 py-3 rounded-3xl ${variant === "primary"
         ? "text-white bg-gray-900"
         : "text-gray-900 border border-gray-900"
-    }`}
+      }`}
   >
     {children}
   </button>
@@ -24,8 +23,8 @@ const Hero: React.FC = () => {
         <div className="flex flex-col w-6/12 max-md:ml-0 max-md:w-full">
           <header className="flex flex-col self-stretch my-auto text-xl font-medium max-md:mt-10 max-md:max-w-full">
             <h2 className="font-semibold text-gray-500 max-md:max-w-full">WELCOME TO THE FUTURE</h2>
-            <h1 className="mt-3 text-4xl font-bold text-gray-900 leading-[60px] max-md:max-w-full">
-              Finally, Decentralized Parking for All!
+            <h1 className="mt-3 text-6xl font-bold text-gray-900 leading-[72px] max-md:max-w-full">
+              Finally, Decentralized Parking for All.
             </h1>
             <p className="mt-6 mr-14 text-2xl leading-10 text-zinc-900 max-md:mr-2.5 max-md:max-w-full">
               Find a parking space or charging station wherever you need it with realtime availability and dynamic pricing.
