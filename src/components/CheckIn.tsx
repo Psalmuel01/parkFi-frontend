@@ -3,18 +3,19 @@ import {DurationType, ParkSpaceMetadata} from "../types.ts";
 import {useContractContext} from "../contexts/ContractContext.tsx";
 import contractAddrs from "../generated/contracts.ts";
 import { toast } from 'react-hot-toast';
+import {maxUint256} from "viem";
 
 const CheckIn: FC<{space: ParkSpaceMetadata, clearCurrentSpace: () => void}> = ({space, clearCurrentSpace}) => {
     const [durationType, setDurationType] = useState<DurationType>(DurationType.HOURLY);
     const [duration, setDuration] = useState("");
-    const {writeToParkFi, writeToParkToken} = useContractContext();
+    const {writeToParkFi, writeToParkToken, allowance} = useContractContext();
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         toast.loading("Waiting...", {duration: 5000})
-        const allowTX = await writeToParkToken("approve", [contractAddrs.ParkFi,(durationType === DurationType.HOURLY ? space.hourlyPrice : space.dailyPrice) * BigInt(duration)]);
-        const checkInTx = await writeToParkFi("checkIn", [space.psId, durationType, BigInt(duration)]);
-        console.log({allowTX, checkInTx});
+        if (!allowance || allowance == 0n) await writeToParkToken("approve", [contractAddrs.ParkFi, maxUint256]);
+        await writeToParkFi("checkIn", [space.psId, durationType, BigInt(duration)]);
+
         toast.success("Successfully checked in!")
         clearSpace();
     }

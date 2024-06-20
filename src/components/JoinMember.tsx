@@ -4,16 +4,19 @@ import {useContractContext} from "../contexts/ContractContext.tsx";
 import { useState } from "react";
 import { useSignMessage } from "wagmi";
 import { toast } from "react-hot-toast";
+import contractAddrs from "../generated/contracts.ts";
+import {maxUint256} from "viem";
 
 const Member = () => {
   const web3 = new Web3();
   const [valid, setValid] = useState(false);
   const { signMessage } = useSignMessage()
-  const {memberShipBalance, activeAccount, writeToParkFi} = useContractContext();
+  const {memberShipBalance, activeAccount, writeToParkFi,allowance,writeToParkToken} = useContractContext();
 
 
   const mintMembership = async () => {
     await writeToParkFi("verifyAndMintMembership")
+    if (!allowance ||allowance == 0n) await writeToParkToken("approve", [contractAddrs.ParkFi, maxUint256]);
   }
 
   const ids = [

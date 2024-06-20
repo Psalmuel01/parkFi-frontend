@@ -6,7 +6,8 @@ import ParkFiAbi from "../generated/abi/ParkFi.json";
 import ParkTokenAbi from "../generated/abi/ParkToken.json";
 import { ParkSpaceMetadata } from "../types.ts";
 import {parseEther} from "viem";
-
+import {waitForTransactionReceipt} from "viem/actions";
+import {config} from "../App.tsx";
 
 const ContractContext = createContext({
     memberShipBalance: 0n,
@@ -17,7 +18,8 @@ const ContractContext = createContext({
     writeToParkFi: async (functionName: string, args?: any[]) => {},
     // @ts-ignore
     writeToParkToken: async (functionName: string, args?: any[]) => {},
-    mintParkToken: () => {}
+    mintParkToken: () => {},
+    allowance: 0n
 })
 
 const ContractProvider: FC<{ children: ReactNode }> = ({ children }) => {
@@ -29,6 +31,13 @@ const ContractProvider: FC<{ children: ReactNode }> = ({ children }) => {
         address: contractAddrs.MembershipNft,
         functionName: "balanceOf",
         args: [activeAccount.address]
+    })
+
+    const { data: allowance } = useReadContract({
+        abi: ParkTokenAbi,
+        address: contractAddrs.ParkToken,
+        functionName: "allowance",
+        args: [activeAccount.address, contractAddrs.ParkFi]
     })
 
     const { data: availableParkingSpaces } = useReadContract({
@@ -57,16 +66,20 @@ const ContractProvider: FC<{ children: ReactNode }> = ({ children }) => {
                 args,
             })
 
-            if (!tx) {
-                throw new Error();
-                return;
-            }
+            // @ts-ignore
+            const suc = await waitForTransactionReceipt(config ,{
+                hash: tx
+            });
+
+            console.log({suc})
+
 
             // Success
 
         } catch (error) {
             // Error
-                console.error(error)
+            console.log({error})
+            console.error(error)
         }
 
     }
@@ -82,10 +95,13 @@ const ContractProvider: FC<{ children: ReactNode }> = ({ children }) => {
                 ...other
             })
 
-            if (!tx) {
-                throw new Error();
-                return;
-            }
+            // @ts-ignore
+            const suc = await waitForTransactionReceipt(config ,{
+                hash: tx
+            });
+
+            console.log({suc})
+
 
             // Success
 
@@ -108,7 +124,8 @@ const ContractProvider: FC<{ children: ReactNode }> = ({ children }) => {
         myParkingSpaces: (myParkingSpaces as ParkSpaceMetadata[]) || [],
         writeToParkFi,
         writeToParkToken,
-        mintParkToken
+        mintParkToken,
+        allowance: allowance as bigint || 0n
     }}>
         {children}
     </ContractContext.Provider>

@@ -4,18 +4,19 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Join from "./pages/Join";
 import About from "./pages/About";
 import Landing from "./pages/Landing";
-import { WagmiProvider } from "wagmi";
-import { sepolia } from "viem/chains";
+import {createConfig, http, WagmiProvider} from "wagmi";
+import { sepolia } from '@wagmi/core/chains'
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { getDefaultConfig, RainbowKitProvider, darkTheme } from "@rainbow-me/rainbowkit";
+import { RainbowKitProvider, darkTheme } from "@rainbow-me/rainbowkit";
 import { ContractProvider } from "./contexts/ContractContext.tsx";
 import { Toaster } from 'react-hot-toast';
 
-const config = getDefaultConfig({
-  appName: 'Park FI',
-  projectId: 'YOUR_PROJECT_ID',
+
+export const config = createConfig({
   chains: [sepolia],
-  ssr: false, // If your dApp uses server side rendering (SSR)
+  transports: {
+    [sepolia.id]: http("https://eth-sepolia.g.alchemy.com/v2/0Xg1q3EfU4JMBwISBfgeqWyvYjjrQErA")
+  }
 });
 
 const queryClient = new QueryClient();
