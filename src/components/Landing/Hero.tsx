@@ -5,17 +5,6 @@ interface ButtonProps {
   variant: "primary" | "secondary";
 }
 
-const Button: React.FC<ButtonProps> = ({ children, variant }) => (
-  <button
-    className={`justify-center px-5 py-3 rounded-3xl ${variant === "primary"
-        ? "text-white bg-gray-900"
-        : "text-gray-900 border border-gray-900"
-      }`}
-  >
-    {children}
-  </button>
-);
-
 const Hero: React.FC = () => {
   return (
     <section className="justify-center py-7 w-full max-w-[1337px] max-md:max-w-full">
@@ -30,8 +19,8 @@ const Hero: React.FC = () => {
               Find a parking space or charging station wherever you need it with realtime availability and dynamic pricing.
             </p>
             <div className="flex gap-5 justify-between self-start mt-6 max-md:flex-wrap">
-              <Button variant="primary">Watch Demo</Button>
-              <Button variant="secondary">Parking Simulator</Button>
+              <a href="https://www.loom.com/share/0f41008b7a784177b5eaf1ed1e5904a6?sid=cc9cfec8-ffef-42b2-8786-ccb5229f46d6" className="justify-center px-5 py-3 rounded-3xl text-white bg-gray-900">Watch Demo</a>
+              <a href="#" className="justify-center px-5 py-3 rounded-3xl text-gray-900 border border-gray-900">Parking Simulator</a>
             </div>
           </header>
         </div>
