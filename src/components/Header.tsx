@@ -5,10 +5,12 @@ import { useChainId, useSwitchChain } from "wagmi";
 import { useEffect, useState } from "react";
 import { sepolia } from "viem/chains";
 import logo from "../images/logo.png";
+import {useContractContext} from "../contexts/ContractContext.tsx";
 
 const Header = () => {
   const chainId = useChainId();
   const { switchChain } = useSwitchChain();
+  const {mintParkToken} = useContractContext();
 
   const [clickedButton, setClickedButton] = useState('home');
 
@@ -49,7 +51,10 @@ const Header = () => {
               Join Network
             </Link>
           </div>
-          <div className="max-lg:hidden"><ConnectButton /></div>
+          <div className="max-lg:hidden flex items-center gap-4">
+            <button className="btn btn-sm btn-info" onClick={mintParkToken}>mint ParkToken</button>
+            <ConnectButton />
+          </div>
         </div>
       </nav>
     </header>

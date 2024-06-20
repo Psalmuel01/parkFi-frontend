@@ -77,7 +77,7 @@
         "internalType": "struct ParkFi.ParkSpaceMetadata[]",
         "components": [
           {
-            "name": "id",
+            "name": "psId",
             "type": "uint256",
             "internalType": "uint256"
           },
@@ -132,7 +132,7 @@
         "internalType": "struct ParkFi.ParkSpaceMetadata[]",
         "components": [
           {
-            "name": "id",
+            "name": "psId",
             "type": "uint256",
             "internalType": "uint256"
           },

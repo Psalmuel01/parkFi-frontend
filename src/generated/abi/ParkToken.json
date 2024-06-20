@@ -3,7 +3,7 @@
     "type": "constructor",
     "inputs": [
       {
-        "name": "_initialRecipient",
+        "name": "_owner",
         "type": "address",
         "internalType": "address"
       }
@@ -79,19 +79,8 @@
   },
   {
     "type": "function",
-    "name": "burn",
-    "inputs": [
-      {
-        "name": "from",
-        "type": "address",
-        "internalType": "address"
-      },
-      {
-        "name": "amount",
-        "type": "uint256",
-        "internalType": "uint256"
-      }
-    ],
+    "name": "claim",
+    "inputs": [],
     "outputs": [],
     "stateMutability": "nonpayable"
   },
@@ -110,51 +99,10 @@
   },
   {
     "type": "function",
-    "name": "decreaseAllowance",
-    "inputs": [
-      {
-        "name": "spender",
-        "type": "address",
-        "internalType": "address"
-      },
-      {
-        "name": "requestedDecrease",
-        "type": "uint256",
-        "internalType": "uint256"
-      }
-    ],
-    "outputs": [
-      {
-        "name": "",
-        "type": "bool",
-        "internalType": "bool"
-      }
-    ],
-    "stateMutability": "nonpayable"
-  },
-  {
-    "type": "function",
-    "name": "increaseAllowance",
-    "inputs": [
-      {
-        "name": "spender",
-        "type": "address",
-        "internalType": "address"
-      },
-      {
-        "name": "addedValue",
-        "type": "uint256",
-        "internalType": "uint256"
-      }
-    ],
-    "outputs": [
-      {
-        "name": "",
-        "type": "bool",
-        "internalType": "bool"
-      }
-    ],
-    "stateMutability": "nonpayable"
+    "name": "mint",
+    "inputs": [],
+    "outputs": [],
+    "stateMutability": "payable"
   },
   {
     "type": "function",
@@ -297,27 +245,6 @@
       }
     ],
     "anonymous": false
-  },
-  {
-    "type": "error",
-    "name": "ERC20FailedDecreaseAllowance",
-    "inputs": [
-      {
-        "name": "spender",
-        "type": "address",
-        "internalType": "address"
-      },
-      {
-        "name": "currentAllowance",
-        "type": "uint256",
-        "internalType": "uint256"
-      },
-      {
-        "name": "requestedDecrease",
-        "type": "uint256",
-        "internalType": "uint256"
-      }
-    ]
   },
   {
     "type": "error",
