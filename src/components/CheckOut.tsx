@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { FC } from 'react'
+import { ParkSpaceMetadata } from '../types'
 
-const CheckOut = () => {
+const CheckOut: FC<{space: ParkSpaceMetadata, clearCurrentSpace: () => void}> = ({space, clearCurrentSpace}) => {
     return (
         <div className='pt-20'>
             <div>

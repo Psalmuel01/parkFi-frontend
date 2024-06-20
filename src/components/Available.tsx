@@ -35,7 +35,6 @@ const Available = () => {
                             {/*<p>Duration: {space.durationType}</p>*/}
                             <div className="card-actions justify-end">
                                 <button className="btn btn-primary" onClick={() => rent(space)}>Rent now</button>
-
                             </div>
                         </div>
                     </div>
