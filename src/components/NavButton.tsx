@@ -3,6 +3,7 @@ import { Dialog } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { useState } from 'react';
 import {ConnectButton} from "@rainbow-me/rainbowkit";
+import logo from "../images/logo.png";
 
 
 const navigation = [
@@ -29,8 +30,8 @@ const NavButton = () => {
         <div className="fixed inset-0 z-50" />
         <Dialog.Panel className="text-[#070B12] fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
-            <a href="/" className="text-3xl text-primary bg-clip-text max-md:text-2xl max-sm:text-xl">
-              ParkFi
+            <a href="/" className="text-3xl flex items-center text-primary bg-clip-text max-md:text-2xl max-sm:text-xl">
+              <img src={logo} alt="" /> ParkFi
             </a>
             <button
               type="button"
@@ -41,7 +42,7 @@ const NavButton = () => {
               <XMarkIcon className="text-red-400 cursor-pointer h-6 w-6" aria-hidden="true" />
             </button>
           </div>
-          <div className="mt-6 flow-root">
+          <div className="mt-6 flow-root font-medium">
             <div className="-my-6 divide-y divide-gray-500/10">
               <div className="space-y-2 py-6">
                 {navigation.map((item) => (

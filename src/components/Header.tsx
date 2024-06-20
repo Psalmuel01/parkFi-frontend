@@ -4,6 +4,7 @@ import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { useChainId, useSwitchChain } from "wagmi";
 import { useEffect, useState } from "react";
 import { sepolia } from "viem/chains";
+import logo from "../images/logo.png";
 
 const Header = () => {
   const chainId = useChainId();
@@ -30,9 +31,9 @@ const Header = () => {
         <div className="justify-between items-center self-center flex w-full gap-5 max-md:max-w-full max-md:flex-wrap">
           <Link
             to="/"
-            className="text-3xl major-flex font-bold gap-2 bg-clip-text max-md:text-2xl max-sm:text-xl"
+            className="text-3xl flex items-center font-bold gap-2 bg-clip-text max-md:text-2xl max-sm:text-xl"
           >
-            ParkFi
+            <img src={logo} alt="" />ParkFi
           </Link>
           <div className="flex lg:hidden">
             <NavButton />
