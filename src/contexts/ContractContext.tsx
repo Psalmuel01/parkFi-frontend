@@ -13,8 +13,8 @@ const ContractContext = createContext({
     activeAccount: (null as any),
     availableParkingSpaces: [] as ParkSpaceMetadata[],
     myParkingSpaces: [] as ParkSpaceMetadata[],
-    writeToParkFi: async (functionName: string, args?: any[]) => functionName && args ? "Ox" : "Ox",
-    writeToParkToken: async (functionName: string, args?: any[]) => functionName && args ? "Ox" : "Ox",
+    writeToParkFi: async (functionName: string, args?: any[]) => {},
+    writeToParkToken: async (functionName: string, args?: any[]) => {},
     mintParkToken: () => {}
 })
 
@@ -45,20 +45,54 @@ const ContractProvider: FC<{ children: ReactNode }> = ({ children }) => {
 
     const { writeContractAsync } = useWriteContract();
 
-    const writeToParkFi = async (functionName: string, args?: any[]) => await writeContractAsync({
-        abi: ParkFiAbi,
-        address: contractAddrs.ParkFi,
-        functionName,
-        args,
-    })
+    const writeToParkFi = async (functionName: string, args?: any[]) => {
+        try {
+            // Loading
+           const tx = await writeContractAsync({
+                abi: ParkFiAbi,
+                address: contractAddrs.ParkFi,
+                functionName,
+                args,
+            })
 
-    const writeToParkToken = async (functionName: string, args?: any[], other?: any) => await writeContractAsync({
-        abi: ParkTokenAbi,
-        address: contractAddrs.ParkToken,
-        functionName,
-        args,
-        ...other
-    })
+            if (!tx) {
+                throw new Error();
+                return;
+            }
+
+            // Success
+
+        } catch (error) {
+            // Error
+                console.error(error)
+        }
+
+    }
+
+    const writeToParkToken = async (functionName: string, args?: any[], other?: any) =>{
+        try {
+            // Loading
+            const tx = await writeContractAsync({
+                abi: ParkTokenAbi,
+                address: contractAddrs.ParkToken,
+                functionName,
+                args,
+                ...other
+            })
+
+            if (!tx) {
+                throw new Error();
+                return;
+            }
+
+            // Success
+
+        } catch (error) {
+            // Error
+            console.error(error)
+        }
+
+    }
 
     const mintParkToken = async () => await writeToParkToken("mint", undefined, {
         value: parseEther("0.00001")
