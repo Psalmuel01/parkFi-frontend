@@ -9,6 +9,7 @@ import { sepolia } from "viem/chains";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { getDefaultConfig, RainbowKitProvider, darkTheme } from "@rainbow-me/rainbowkit";
 import { ContractProvider } from "./contexts/ContractContext.tsx";
+import toast, { Toaster } from 'react-hot-toast';
 
 const config = getDefaultConfig({
   appName: 'Park FI',
@@ -65,6 +66,7 @@ function App() {
           })}>
             <ContractProvider>
               <RouterProvider router={router} />
+              <Toaster />
             </ContractProvider>
           </ RainbowKitProvider>
         </QueryClientProvider>

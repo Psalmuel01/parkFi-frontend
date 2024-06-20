@@ -10,7 +10,6 @@ const About = () => {
         <p>ParkFi will operate on a fee-based model, charging a small transaction fee for each parking space reservation. This fee will be significantly lower than the costs associated with traditional parking methods, ensuring affordability and sustainability.</p>
         <p>Additionally, ParkFi will offer premium membership options that provide users with benefits such as discounted rates, priority reservations, and access to exclusive parking spaces.</p>
       </div>
-      <CheckOut />
     </div>
   )
 }

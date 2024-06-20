@@ -3,6 +3,7 @@ import TransgateConnect from "@zkpass/transgate-js-sdk";
 import {useContractContext} from "../contexts/ContractContext.tsx";
 import { useState } from "react";
 import { useSignMessage } from "wagmi";
+import { toast } from "react-hot-toast";
 
 const Member = () => {
   const web3 = new Web3();
@@ -34,6 +35,9 @@ const Member = () => {
     console.log(exchange, schemaId);
 
     try {
+      toast.loading("Waiting...", {
+        duration: 5000,
+      })
       // The appid of the project created in dev center
       const appid = "1ce74716-51e2-4313-b14d-e3e0995a8d3b";
 
@@ -114,11 +118,14 @@ const Member = () => {
 
         if (allocatorProof && validatorProof) {
           setValid(true);
-          signMessage({
+          await signMessage({
             message: `Validating: ${validatorParamsHash}`,
           });
+          toast.success("Verified successfully. Now mint membership", {
+            duration: 12000,
+          })
         }
-
+        
         console.log(memberShipBalance);
         
       } else {
