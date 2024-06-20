@@ -12,7 +12,7 @@ const CheckIn: FC<{space: ParkSpaceMetadata, clearCurrentSpace: () => void}> = (
         e.preventDefault();
 
         const allowTX = await writeToParkToken("approve", [contractAddrs.ParkFi,(durationType === DurationType.HOURLY ? space.hourlyPrice : space.dailyPrice) * BigInt(duration)]);
-        const checkInTx = await writeToParkFi("checkIn", [space.id, durationType, BigInt(duration)]);
+        const checkInTx = await writeToParkFi("checkIn", [space.psId, durationType, BigInt(duration)]);
         console.log({allowTX, checkInTx});
         clearSpace();
     }
@@ -49,7 +49,7 @@ const CheckIn: FC<{space: ParkSpaceMetadata, clearCurrentSpace: () => void}> = (
                            value={duration} onChange={e => setDuration(e.target.value)}/>
                 </div>
                 <div className='mb-5 mx-2 w-full text-center'>
-                    <p className='font-semibold'>Parking ID: {Number(space.id)}</p>
+                    <p className='font-semibold'>Parking ID: {Number(space.psId)}</p>
                 </div>
                 <div className='w-full text-center'>
                     <input type="submit" value="Check in"

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useContractContext } from '../contexts/ContractContext';
 import { formatEther } from 'viem';
 import park from "../images/park.jpg";
@@ -20,7 +20,7 @@ const MySpace = () => {
       <h2 className='text-3xl my-16 font-bold text-center'>My Spaces</h2>
       <div className='flex flex-wrap justify-around gap-y-20'>
         {myParkingSpaces.map((space) => (
-          <div className="card card-compact w-96 shadow-xl" key={space.id}>
+          <div className="card card-compact w-96 shadow-xl" key={space.psId}>
             <figure><img src={park} alt="park" /></figure>
             <div className="card-body">
               <h2 className="card-title">

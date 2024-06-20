@@ -6,7 +6,7 @@ export enum DurationType {
 }
 
 export interface ParkSpaceMetadata {
-    id: bigint;
+    psId: bigint;
     hourlyPrice: bigint;
     dailyPrice: bigint;
     validTill: bigint;

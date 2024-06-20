@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import { ParkSpaceMetadata } from '../types'
 
 const CheckOut: FC<{space: ParkSpaceMetadata, clearCurrentSpace: () => void}> = ({space, clearCurrentSpace}) => {

@@ -22,7 +22,7 @@ const Available = () => {
             <h2 className='text-3xl my-16 font-bold text-center'>Parking Spaces</h2>
             <div className='flex flex-wrap justify-around gap-y-20'>
                 {availableParkingSpaces.map((space) => (
-                    <div className="card card-compact w-96 shadow-xl" key={space.id}>
+                    <div className="card card-compact w-96 shadow-xl" key={space.psId}>
                         <figure><img src={park} alt="park"/></figure>
                         <div className="card-body">
                             <h2 className="card-title">
