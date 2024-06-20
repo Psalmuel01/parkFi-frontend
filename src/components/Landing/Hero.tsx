@@ -26,7 +26,7 @@ const Hero: React.FC = () => {
             <h1 className="mt-3 text-6xl font-bold text-gray-900 leading-[72px] max-md:max-w-full">
               Finally, Decentralized Parking for All.
             </h1>
-            <p className="mt-6 mr-14 text-2xl leading-10 text-zinc-900 max-md:mr-2.5 max-md:max-w-full">
+            <p className="my-6 mr-14 text-2xl leading-10 text-zinc-900 max-md:mr-2.5 max-md:max-w-full">
               Find a parking space or charging station wherever you need it with realtime availability and dynamic pricing.
             </p>
             <div className="flex gap-5 justify-between self-start mt-6 max-md:flex-wrap">

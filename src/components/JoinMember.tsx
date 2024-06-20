@@ -2,6 +2,7 @@ import Web3 from "web3";
 import TransgateConnect from "@zkpass/transgate-js-sdk";
 import {useContractContext} from "../contexts/ContractContext.tsx";
 import { useState } from "react";
+import { useSignMessage } from "wagmi";
 
 const Member = () => {
   const web3 = new Web3();

@@ -49,7 +49,7 @@ const CheckIn: FC<{space: ParkSpaceMetadata, clearCurrentSpace: () => void}> = (
                            value={duration} onChange={e => setDuration(e.target.value)}/>
                 </div>
                 <div className='mb-5 mx-2 w-full text-center'>
-                    <p className='font-semibold'>Parking Space ID: {Number(space.id)}</p>
+                    <p className='font-semibold'>Parking ID: {Number(space.id)}</p>
                 </div>
                 <div className='w-full text-center'>
                     <input type="submit" value="Check in"
