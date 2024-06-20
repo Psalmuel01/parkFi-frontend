@@ -1,7 +1,8 @@
-const contractAddrs: Record<"MembershipNft" | "ParkFi" | "ParkToken", `0x${string}`> =  {
-    MembershipNft:  "0x8bB960138cb32F9e40fD68Bac5eAd8F7d1eeDEB5",
-    ParkFi: "0x5f7520323cEB32D7eF9B0315796a30b91519dFEC",
-    ParkToken: "0xfd57931425e1da4257500a5b168fe5c975b97c52"
+const contractAddrs: Record<"MembershipNft" | "ParkFi" | "ParkToken" | "ParkingSpaceNFT", `0x${string}`> =  {
+    MembershipNft: "0xe37e44964Dad319C6b31D222453b7DDd3b249721",
+    ParkingSpaceNFT: "0x6Ec5929e48aD78838155FC8D3C6ed4E3c5BAc111",
+    ParkToken: "0xD8ed4a9317585BD8Ce8eF7524C313F25373D1739",
+    ParkFi: "0x1f6EEC72dcA1ccd968aba326492EAAB09bF8C14c"
 }
 
 export default contractAddrs
