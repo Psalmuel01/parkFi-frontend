@@ -52,7 +52,7 @@ const Header = () => {
             </Link>
           </div>
           <div className="max-lg:hidden flex items-center gap-4">
-            <button className="btn btn-sm btn-info" onClick={mintParkToken}>mint ParkToken</button>
+            <button className="btn btn-md btn-info text-lg" onClick={mintParkToken}>Mint ParkToken</button>
             <ConnectButton />
           </div>
         </div>

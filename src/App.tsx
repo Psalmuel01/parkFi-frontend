@@ -4,11 +4,11 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Join from "./pages/Join";
 import About from "./pages/About";
 import Landing from "./pages/Landing";
-import { WagmiProvider} from "wagmi";
-import {sepolia} from "viem/chains";
-import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
-import {getDefaultConfig, RainbowKitProvider} from "@rainbow-me/rainbowkit";
-import {ContractProvider} from "./contexts/ContractContext.tsx";
+import { WagmiProvider } from "wagmi";
+import { sepolia } from "viem/chains";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { getDefaultConfig, RainbowKitProvider, darkTheme } from "@rainbow-me/rainbowkit";
+import { ContractProvider } from "./contexts/ContractContext.tsx";
 
 const config = getDefaultConfig({
   appName: 'Park FI',
@@ -56,7 +56,13 @@ function App() {
     <div className="bg-white px-8 py-6 lg:px-20 lg:py-10">
       <WagmiProvider config={config}>
         <QueryClientProvider client={queryClient}>
-          <RainbowKitProvider>
+          <RainbowKitProvider theme={darkTheme({
+            accentColor: '#0D0C22',
+            accentColorForeground: 'white',
+            borderRadius: 'medium',
+            fontStack: 'system',
+            overlayBlur: 'small',
+          })}>
             <ContractProvider>
               <RouterProvider router={router} />
             </ContractProvider>
