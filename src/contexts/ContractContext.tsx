@@ -1,10 +1,11 @@
-import { createContext, FC, ReactNode, useContext } from "react";
-import { useAccount, useReadContract, useWriteContract } from "wagmi";
+import {createContext, FC, ReactNode, useContext} from "react";
+import {useAccount, useReadContract, useWriteContract} from "wagmi";
 import MembershipNftAbi from "../generated/abi/MembershipNft.json";
 import contractAddrs from "../generated/contracts.ts";
 import ParkFiAbi from "../generated/abi/ParkFi.json";
 import ParkTokenAbi from "../generated/abi/ParkToken.json";
 import { ParkSpaceMetadata } from "../types.ts";
+import {parseEther} from "viem";
 
 
 const ContractContext = createContext({
@@ -13,7 +14,8 @@ const ContractContext = createContext({
     availableParkingSpaces: [] as ParkSpaceMetadata[],
     myParkingSpaces: [] as ParkSpaceMetadata[],
     writeToParkFi: async (functionName: string, args?: any[]) => functionName && args ? "Ox" : "Ox",
-    writeToParkToken: async (functionName: string, args?: any[]) => functionName && args ? "Ox" : "Ox"
+    writeToParkToken: async (functionName: string, args?: any[]) => functionName && args ? "Ox" : "Ox",
+    mintParkToken: () => {}
 })
 
 const ContractProvider: FC<{ children: ReactNode }> = ({ children }) => {
@@ -48,14 +50,18 @@ const ContractProvider: FC<{ children: ReactNode }> = ({ children }) => {
         address: contractAddrs.ParkFi,
         functionName,
         args,
-
     })
 
-    const writeToParkToken = async (functionName: string, args?: any[]) => await writeContractAsync({
+    const writeToParkToken = async (functionName: string, args?: any[], other?: any) => await writeContractAsync({
         abi: ParkTokenAbi,
         address: contractAddrs.ParkToken,
         functionName,
-        args
+        args,
+        ...other
+    })
+
+    const mintParkToken = async () => await writeToParkToken("mint", undefined, {
+        value: parseEther("0.00001")
     })
 
 
@@ -65,7 +71,8 @@ const ContractProvider: FC<{ children: ReactNode }> = ({ children }) => {
         availableParkingSpaces: (availableParkingSpaces as ParkSpaceMetadata[]) || [],
         myParkingSpaces: (myParkingSpaces as ParkSpaceMetadata[]) || [],
         writeToParkFi,
-        writeToParkToken
+        writeToParkToken,
+        mintParkToken
     }}>
         {children}
     </ContractContext.Provider>
