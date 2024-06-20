@@ -8,16 +8,16 @@ import {maxUint256} from "viem";
 const CheckIn: FC<{space: ParkSpaceMetadata, clearCurrentSpace: () => void}> = ({space, clearCurrentSpace}) => {
     const [durationType, setDurationType] = useState<DurationType>(DurationType.HOURLY);
     const [duration, setDuration] = useState("");
+    const [loading, setLoading] = useState(false);
     const {writeToParkFi, writeToParkToken, allowance} = useContractContext();
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        setLoading(true);
         toast.loading("Waiting...", {duration: 5000})
-
-        console.log({allowance});
         if (!allowance || allowance == 0n) await writeToParkToken("approve", [contractAddrs.ParkFi, maxUint256]);
         await writeToParkFi("checkIn", [space.psId, durationType, BigInt(duration)]);
-
+        setLoading(false);
         toast.success("Successfully checked in!")
         clearSpace();
     }
@@ -57,7 +57,7 @@ const CheckIn: FC<{space: ParkSpaceMetadata, clearCurrentSpace: () => void}> = (
                     <p className='font-semibold'>Parking ID: {Number(space.psId)}</p>
                 </div>
                 <div className='w-full text-center'>
-                    <input type="submit" value="Check in"
+                    <input type="submit" value={`${loading ? "Loading..." : "Check In"}`}
                            disabled={Number(duration) === 0}
                            className='mt-5 bg-blue-500 hover:bg-blue-600 text-white px-5 py-2 rounded disabled:cursor-not-allowed disabled:bg-opacity-70'/>
                 </div>
