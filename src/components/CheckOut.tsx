@@ -12,10 +12,8 @@ const CheckOut: FC<{
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    toast.loading("Waiting...", { duration: 5000 });
     const checkOutTx = await writeToParkFi("checkOut", [space.psId]);
     console.log({ checkOutTx });
-    toast.success("Successfully checked out!");
   };
   return (
     <div className="pt-20">

@@ -8,6 +8,7 @@ import { ParkSpaceMetadata } from "../types.ts";
 import { parseEther } from "viem";
 import { waitForTransactionReceipt } from "viem/actions";
 import { config } from "../App.tsx";
+import toast from "react-hot-toast";
 
 const ContractContext = createContext({
   memberShipBalance: 0n,
@@ -57,6 +58,7 @@ const ContractProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const writeToParkFi = async (functionName: string, args?: any[]) => {
     try {
       // Loading
+      toast.loading("Executing...", { duration: 5000 });
       const tx = await writeContractAsync({
         abi: ParkFiAbi,
         address: contractAddrs.ParkFi,
@@ -72,8 +74,10 @@ const ContractProvider: FC<{ children: ReactNode }> = ({ children }) => {
       console.log({ suc });
 
       // Success
+      toast.success("Transaction successful!");
     } catch (error) {
       // Error
+      toast.error("Transaction failed!");
       console.log({ error });
       console.error(error);
     }
@@ -86,6 +90,7 @@ const ContractProvider: FC<{ children: ReactNode }> = ({ children }) => {
   ) => {
     try {
       // Loading
+      toast.loading("Executing...", { duration: 5000 });
       const tx = await writeContractAsync({
         abi: ParkTokenAbi,
         address: contractAddrs.ParkToken,
@@ -100,10 +105,14 @@ const ContractProvider: FC<{ children: ReactNode }> = ({ children }) => {
       });
 
       console.log({ suc });
+      toast.success("Transaction successful!");
 
       // Success
     } catch (error) {
       // Error
+
+      toast.error("Transaction failed!");
+
       console.error(error);
     }
   };
