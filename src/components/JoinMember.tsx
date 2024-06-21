@@ -21,8 +21,7 @@ const Member = () => {
 
   const mintMembership = async () => {
     await writeToParkFi("verifyAndMintMembership");
-    if (!allowance || allowance == 0n)
-      await writeToParkToken("approve", [contractAddrs.ParkFi, maxUint256]);
+    await writeToParkToken("approve", [contractAddrs.ParkFi, maxUint256]);
   };
 
   const ids = [
