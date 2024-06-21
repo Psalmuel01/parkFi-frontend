@@ -6,8 +6,6 @@ import ParkFiAbi from "../generated/abi/ParkFi.json";
 import ParkTokenAbi from "../generated/abi/ParkToken.json";
 import { ParkSpaceMetadata } from "../types.ts";
 import { parseEther } from "viem";
-import { waitForTransactionReceipt } from "viem/actions";
-import { config } from "../App.tsx";
 import toast from "react-hot-toast";
 
 const ContractContext = createContext({
@@ -59,17 +57,17 @@ const ContractProvider: FC<{ children: ReactNode }> = ({ children }) => {
     try {
       // Loading
       toast.loading("Executing...", { duration: 5000 });
-      const tx = await writeContractAsync({
+      await writeContractAsync({
         abi: ParkFiAbi,
         address: contractAddrs.ParkFi,
         functionName,
         args,
       });
 
-      // @ts-ignore
-      const suc = await waitForTransactionReceipt(config, {
-        hash: tx,
-      });
+      //   // @ts-ignore
+      //   const suc = await waitForTransactionReceipt(config, {
+      //     hash: tx,
+      //   });
 
       // Success
       toast.success("Transaction successful!");
@@ -89,7 +87,7 @@ const ContractProvider: FC<{ children: ReactNode }> = ({ children }) => {
     try {
       // Loading
       toast.loading("Executing...", { duration: 5000 });
-      const tx = await writeContractAsync({
+      await writeContractAsync({
         abi: ParkTokenAbi,
         address: contractAddrs.ParkToken,
         functionName,
@@ -97,12 +95,12 @@ const ContractProvider: FC<{ children: ReactNode }> = ({ children }) => {
         ...other,
       });
 
-      // @ts-ignore
-      const suc = await waitForTransactionReceipt(config, {
-        hash: tx,
-      });
+      //   // @ts-ignore
+      //   const suc = await waitForTransactionReceipt(config, {
+      //     hash: tx,
+      //   });
 
-      console.log({ suc });
+      //   console.log({ suc });
       toast.success("Transaction successful!");
 
       // Success
@@ -112,13 +110,16 @@ const ContractProvider: FC<{ children: ReactNode }> = ({ children }) => {
       toast.error("Transaction failed!");
 
       console.error(error);
+
+      console.log({ error });
     }
   };
 
-  const mintParkToken = async () =>
+  const mintParkToken = async () => {
     await writeToParkToken("mint", undefined, {
       value: parseEther("0.00001"),
     });
+  };
 
   return (
     <ContractContext.Provider
