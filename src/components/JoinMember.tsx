@@ -11,13 +11,8 @@ const Member = () => {
   const web3 = new Web3();
   const [valid, setValid] = useState(false);
   const { signMessage } = useSignMessage();
-  const {
-    memberShipBalance,
-    activeAccount,
-    writeToParkFi,
-    allowance,
-    writeToParkToken,
-  } = useContractContext();
+  const { memberShipBalance, activeAccount, writeToParkFi, writeToParkToken } =
+    useContractContext();
 
   const mintMembership = async () => {
     await writeToParkFi("verifyAndMintMembership");
