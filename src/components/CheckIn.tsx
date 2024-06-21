@@ -2,7 +2,6 @@ import { FC, useState } from "react";
 import { DurationType, ParkSpaceMetadata } from "../types.ts";
 import { useContractContext } from "../contexts/ContractContext.tsx";
 import contractAddrs from "../generated/contracts.ts";
-import { toast } from "react-hot-toast";
 import { maxUint256 } from "viem";
 
 const CheckIn: FC<{

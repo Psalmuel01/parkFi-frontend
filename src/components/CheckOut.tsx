@@ -1,6 +1,5 @@
 import { FC } from "react";
 import { ParkSpaceMetadata } from "../types";
-import { toast } from "react-hot-toast";
 import { useContractContext } from "../contexts/ContractContext";
 
 const CheckOut: FC<{
