@@ -71,8 +71,6 @@ const ContractProvider: FC<{ children: ReactNode }> = ({ children }) => {
         hash: tx,
       });
 
-      console.log({ suc });
-
       // Success
       toast.success("Transaction successful!");
     } catch (error) {

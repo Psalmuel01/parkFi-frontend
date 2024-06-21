@@ -1,29 +1,40 @@
 import Web3 from "web3";
 import TransgateConnect from "@zkpass/transgate-js-sdk";
-import {useContractContext} from "../contexts/ContractContext.tsx";
+import { useContractContext } from "../contexts/ContractContext.tsx";
 import { useState } from "react";
 import { useSignMessage } from "wagmi";
 import { toast } from "react-hot-toast";
 import contractAddrs from "../generated/contracts.ts";
-import {maxUint256} from "viem";
+import { maxUint256 } from "viem";
 
 const Member = () => {
   const web3 = new Web3();
   const [valid, setValid] = useState(false);
-  const { signMessage } = useSignMessage()
-  const {memberShipBalance, activeAccount, writeToParkFi,allowance,writeToParkToken} = useContractContext();
-
+  const { signMessage } = useSignMessage();
+  const {
+    memberShipBalance,
+    activeAccount,
+    writeToParkFi,
+    allowance,
+    writeToParkToken,
+  } = useContractContext();
 
   const mintMembership = async () => {
-    await writeToParkFi("verifyAndMintMembership")
-    if (!allowance ||allowance == 0n) await writeToParkToken("approve", [contractAddrs.ParkFi, maxUint256]);
-  }
+    await writeToParkFi("verifyAndMintMembership");
+    if (!allowance || allowance == 0n)
+      await writeToParkToken("approve", [contractAddrs.ParkFi, maxUint256]);
+  };
 
   const ids = [
-    "9617db4336a04bfb9e2e74f9d05a59f1",
-    "fdc4a02243a24741908e564d924eb248",
-    "42a7c85ec5c349178928c142124c2fe6",
+    "5108cbedcb3b457cb3fd3e898fa22816",
+    "8a2942d108a14d75a2e4f9a62a615252",
+    "b936394c1bc2400b928df5b3422fb3fd",
   ];
+  //  const ids = [
+  //   "9617db4336a04bfb9e2e74f9d05a59f1",
+  //   "fdc4a02243a24741908e564d924eb248",
+  //   "42a7c85ec5c349178928c142124c2fe6",
+  // ];
 
   const verify = async (exchange: string) => {
     const schemaId =
@@ -39,9 +50,10 @@ const Member = () => {
     try {
       toast.loading("Waiting...", {
         duration: 5000,
-      })
+      });
       // The appid of the project created in dev center
-      const appid = "0fe97aed-8038-44a9-98ef-44783bf262f2";
+      const appid = "1ce74716-51e2-4313-b14d-e3e0995a8d3b";
+      // const appid = "0fe97aed-8038-44a9-98ef-44783bf262f2";
 
       // Create the connector instance
       const connector = new TransgateConnect(appid);
@@ -53,7 +65,10 @@ const Member = () => {
       if (isAvailable) {
         // Launch the process of verification
         // add a second parameter address to verify onchain
-        const res: any = await connector.launch(schemaId!, activeAccount?.address);
+        const res: any = await connector.launch(
+          schemaId!,
+          activeAccount?.address
+        );
 
         // verify allocator signature
 
@@ -77,7 +92,9 @@ const Member = () => {
           ["bytes32", "bytes32", "address"],
           [taskIdHex, schemaIdHex, validatorAddress]
         );
-        const allocatorParamsHash = Web3.utils.soliditySha3(allocatorEncodeParams);
+        const allocatorParamsHash = Web3.utils.soliditySha3(
+          allocatorEncodeParams
+        );
 
         // recover allocator address
 
@@ -87,7 +104,9 @@ const Member = () => {
         );
 
         //check if the signed allocator address is registered
-        const allocatorProof = signedAllocatorAddress === "0x19a567b3b212a5b35bA0E3B600FbEd5c2eE9083d"
+        const allocatorProof =
+          signedAllocatorAddress ===
+          "0x19a567b3b212a5b35bA0E3B600FbEd5c2eE9083d";
         console.log(allocatorProof);
 
         // verify validator signature
@@ -101,9 +120,14 @@ const Member = () => {
           values.push(recipient);
         }
 
-        const validatorEncodeParams = web3.eth.abi.encodeParameters(types, values);
+        const validatorEncodeParams = web3.eth.abi.encodeParameters(
+          types,
+          values
+        );
 
-        const validatorParamsHash = Web3.utils.soliditySha3(validatorEncodeParams);
+        const validatorParamsHash = Web3.utils.soliditySha3(
+          validatorEncodeParams
+        );
 
         // recover validator address
         const signedValidatorAddress = web3.eth.accounts.recover(
@@ -111,7 +135,7 @@ const Member = () => {
           validatorSignature
         );
 
-        const validatorProof = signedValidatorAddress === validatorAddress
+        const validatorProof = signedValidatorAddress === validatorAddress;
         console.log(validatorProof);
 
         // sign transaction onchain
@@ -123,11 +147,10 @@ const Member = () => {
           });
           toast.success("Verified successfully. Now mint membership", {
             duration: 12000,
-          })
+          });
         }
-        
+
         console.log(memberShipBalance);
-        
       } else {
         console.log("Please install TransGate");
       }
@@ -146,38 +169,39 @@ const Member = () => {
           <h2 className="font-semibold text-2xl mb-8">
             Verify KYC using zkPass to become a ParkFi Member
           </h2>
-          {
-            activeAccount?.address ? <div className="flex items-center justify-around">
+          {activeAccount?.address ? (
+            <div className="flex items-center justify-around">
               <div
-                  className="border p-4 cursor-pointer hover:bg-white"
-                  onClick={() => verify("okx")}
+                className="border p-4 cursor-pointer hover:bg-white"
+                onClick={() => verify("okx")}
               >
                 OKX KYC
               </div>
               <div
-                  className="border p-4 cursor-pointer hover:bg-white"
-                  onClick={() => verify("bybit")}
+                className="border p-4 cursor-pointer hover:bg-white"
+                onClick={() => verify("bybit")}
               >
                 Bybit KYC
               </div>
               <div
-                  className="border p-4 cursor-pointer hover:bg-white"
-                  onClick={() => verify("binance")}
+                className="border p-4 cursor-pointer hover:bg-white"
+                onClick={() => verify("binance")}
               >
                 Binance KYC
               </div>
-            </div> : <div className="flex justify-center items-center h-60 text-2xl font-bold">
+            </div>
+          ) : (
+            <div className="flex justify-center items-center h-60 text-2xl font-bold">
               Connect Wallet to Start
             </div>
-          }
-
+          )}
         </div>
         <div className="w-full text-center mt-5 flex flex-col">
           <button
-              type="submit"
-              disabled={memberShipBalance > 0n || !valid}
-              className="my-5 bg-blue-500 text-white px-5 py-3 rounded w-fit mx-auto"
-              onClick={mintMembership}
+            type="submit"
+            disabled={memberShipBalance > 0n || !valid}
+            className="my-5 bg-blue-500 text-white px-5 py-3 rounded w-fit mx-auto"
+            onClick={mintMembership}
           >
             Mint membership NFT
           </button>
